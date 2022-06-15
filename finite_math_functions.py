@@ -1,6 +1,7 @@
 import math
 
-
+# finds all units of a number system ℤn
+# returns a list of units
 def find_units(num):
     counter = 0
     answers = []
@@ -12,7 +13,12 @@ def find_units(num):
     print(answers)
     return answers
 
-def extended_euclid_gcd(a, b, visualise = True):
+# given two integers, returns a list of the format
+# [gcd, x, y] where x and y are the values ax + ny = GCD 
+# in Bezout's Identity
+# if visualise is set to true, it will print a table in terminal
+# showing steps
+def extended_euclid_gcd(a, b, visualise = False):
 
     x_right = 0; x_left = 1
     y_right = 1; y_left = 0
@@ -38,21 +44,32 @@ def extended_euclid_gcd(a, b, visualise = True):
             print("{: >10} {: >10} {: >10} {: >10}".format(*row))
     return [remainder_left, x_left, y_left]
 
-def find_all_inverses_in_num_system_Zn(num):
+# finds all inverses of a number system ℤn
+# [gcd, x, y] where x and y are the values ax + ny = GCD 
+# in Bezout's Identity
+# if visualise is set to true, it will print all inverses in a sentence
+def find_all_inverses_in_num_system_Zn(num, visualise = False):
     units = find_units(num)
-
+    ans = []
     for i in units:
         x = extended_euclid_gcd(i, num, False)[1]
         x = x % num
-        print(f"The inverse of {i} in ℤ{num} is {x}")
+        ans.append(x)
+        if visualise:
+            print(f"The inverse of {i} in ℤ{num} is {x}")
+    return ans
 
-def find_inverses_in_num_system_Zn(num_to_check,num):
+# finds the inverse of a int number_to_check in the ℤnum number system
+# if visualise is set to true, it will print the inverse in a sentence
+
+def find_inverses_in_num_system_Zn(num_to_check,num, visualise = False):
     if math.gcd(num_to_check,num) != 1:
         print("this number dows not have an inverse in ℤ{num}")
 
     x = extended_euclid_gcd(num_to_check, num, False)[1]
     x = x % num
-    print(f"The inverse of {num_to_check} in ℤ{num} is {x}")
-
+    if visualise:
+        print(f"The inverse of {num_to_check} in ℤ{num} is {x}")
+    return x
 if __name__ =="__main__":
     find_inverses_in_num_system_Zn(7, 36)
