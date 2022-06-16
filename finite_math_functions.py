@@ -20,9 +20,12 @@ def find_units(num):
 # showing steps
 def extended_euclid_gcd(a, b, visualise = False):
 
-    x_right = 0; x_left = 1
-    y_right = 1; y_left = 0
-    remainder_right = b; remainder_left = a
+    x_right = 0
+    x_left = 1
+    y_right = 1
+    y_left = 0
+    remainder_right = b
+    remainder_left = a
     visualise_table = []
 
     if visualise:
@@ -31,8 +34,11 @@ def extended_euclid_gcd(a, b, visualise = False):
 
     while remainder_right != 0:            
         quotient = remainder_left//remainder_right 
+        
         remainder_left, remainder_right = remainder_right, remainder_left - quotient*remainder_right
+
         x_left, x_right = x_right, x_left - quotient*x_right
+
         y_left, y_right = y_right, y_left - quotient*y_right
 
         if visualise:
@@ -72,4 +78,4 @@ def find_inverses_in_num_system_Zn(num_to_check,num, visualise = False):
         print(f"The inverse of {num_to_check} in ℤ{num} is {x}")
     return x
 if __name__ =="__main__":
-    find_inverses_in_num_system_Zn(7, 36)
+    print(extended_euclid_gcd(234, 856, visualise = True))
