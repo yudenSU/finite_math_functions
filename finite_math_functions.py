@@ -77,5 +77,7 @@ def find_inverses_in_num_system_Zn(num_to_check,num, visualise = False):
     if visualise:
         print(f"The inverse of {num_to_check} in ℤ{num} is {x}")
     return x
+
+    
 if __name__ =="__main__":
     print(extended_euclid_gcd(234, 856, visualise = True))
